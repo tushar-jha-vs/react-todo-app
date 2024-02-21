@@ -12,6 +12,20 @@ This is a simple TODO app that allows users to manage their tasks efficiently. U
 
 
 ## How to Use
+
+Steps to run Project :
+
+1. clone this repo
+2. Run the command given below to install all dependencies
+
+ ```
+ npm install
+ ```
+3. Run the command given below to run the project
+
+```
+npm run dev
+```
 1. **Adding a TODO**: Enter the task you want to add and click on the "Add" button.
 2. **Deleting a TODO**: Click on the Cross button next to the task you want to remove.
 3. **Edit a TODO**: Click on the Edit button next to the task you want to edit.
