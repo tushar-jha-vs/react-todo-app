@@ -1,0 +1,8 @@
+.container{
+    margin: auto;
+    margin-top: 1rem;
+    min-height: 80vh;
+    overflow-y: scroll;
+    width: 80%;
+    max-height: 80vh;
+}

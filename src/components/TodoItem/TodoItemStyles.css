@@ -1,0 +1,36 @@
+.todo-item {
+  display: flex;
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+  border-radius: 0.5rem;
+  align-items: center;
+  background-color: #e8a87c;
+}
+.todo-content {
+  display: flex;
+  flex: 1;
+}
+
+.btn-complete {
+  width: 1.2rem;
+  height: 1.2rem;
+  margin: 4px;
+  cursor: pointer;
+}
+.btn {
+  padding: 0.5rem;
+  border: none;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  background-color: #e27d60;
+  margin: 4px;
+}
+
+.todo-name {
+  width: 80%;
+  padding: 0.5rem;
+  margin-right: 8px;
+}
+.cut {
+  text-decoration: line-through;
+}
