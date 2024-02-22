@@ -1,0 +1,19 @@
+.mark-all-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.mark-all-btn{
+    margin: 8px;
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.75rem;
+    background-color: #e27d60;
+    color: white;
+}
+
+.disable-markall{
+    opacity: 0.3;
+}

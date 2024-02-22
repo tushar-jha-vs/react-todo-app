@@ -29,8 +29,22 @@
 .todo-name {
   width: 80%;
   padding: 0.5rem;
-  margin-right: 8px;
 }
 .cut {
   text-decoration: line-through;
+}
+
+.disable {
+  display: none;
+}
+
+.disable-btn {
+  opacity: 0.2;
+}
+
+.edit-tag {
+  height: 10px;
+  width: 10px;
+  margin-top: 10px;
+  font-size: 10px;
 }

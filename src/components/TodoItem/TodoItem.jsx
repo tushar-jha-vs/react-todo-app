@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import "./TodoItemStyles.css";
-const TodoItem = ({ item, setTodos }) => {
+const TodoItem = ({ item, setTodos, hideMarkAll, setHideMarkAll }) => {
   const [editLabel, setEditLabel] = useState(false);
+  const [editTag, setEditTag] = useState(true);
   const [changedTodo, setChangedTodo] = useState(item.name);
   const handleSave = (itemID) => {
     const confirmSave = window.confirm("Are you sure you want to save?");
@@ -15,13 +16,26 @@ const TodoItem = ({ item, setTodos }) => {
         })
       );
     } else return;
+    setEditTag(false);
     setEditLabel(false);
+    setHideMarkAll(false);
   };
   const handleDelete = (itemID) => {
     const confirmDelete = window.confirm(`Are you sure you want to delete?`);
     if (confirmDelete) {
       setTodos((prevTodo) => prevTodo.filter((todo) => todo.id !== itemID));
     } else return;
+    if (editLabel) {
+      setEditLabel(false);
+      setHideMarkAll(false);
+    }
+  };
+
+  const handleCancel = () => {
+    setEditLabel(false);
+    setHideMarkAll(false);
+    setChangedTodo(item.name);
+    return;
   };
   const handleCheck = (itemID) => {
     setTodos((prevTodos) =>
@@ -39,29 +53,56 @@ const TodoItem = ({ item, setTodos }) => {
         <input
           type="checkbox"
           value={item.isCompleted}
+          checked={item.isCompleted}
+          disabled={editLabel || hideMarkAll}
           onChange={() => handleCheck(item.id)}
-          className="btn-complete"
+          className={editLabel ? "disable" : "btn-complete"}
         />
         {editLabel ? (
           <input
             className="todo-name"
             type="text"
             value={changedTodo}
-            onChange={(e) => setChangedTodo(e.target.value)}
+            onChange={(e) => {
+              setChangedTodo(e.target.value);
+            }}
           />
         ) : (
-          <p className={!item.isCompleted ? `todo-name` : "todo-name cut"}>
-            {item.name}
-          </p>
+          <>
+            <p className={!item.isCompleted ? `todo-name` : "todo-name cut"}>
+              {item.name}
+            </p>
+            <p className={editTag ? "disable" : "edit-tag"}>Edited</p>
+          </>
         )}
       </div>
       <div className="btn-options">
         {editLabel ? (
-          <button className="btn" onClick={() => handleSave(item.id)}>
-            Save
-          </button>
+          <>
+            <button onClick={handleCancel} className="btn">
+              Cancel
+            </button>
+            <button
+              disabled={!changedTodo?.trim() || item.name === changedTodo}
+              className={
+                !changedTodo.trim() || item.name === changedTodo
+                  ? "disable-btn btn"
+                  : "btn"
+              }
+              onClick={() => handleSave(item.id)}
+            >
+              Save
+            </button>
+          </>
         ) : (
-          <button onClick={() => setEditLabel(true)} className="btn">
+          <button
+            onClick={() => {
+              setEditLabel(true);
+              setHideMarkAll(true);
+            }}
+            disabled={hideMarkAll}
+            className={hideMarkAll ? "btn disable-btn" : "btn"}
+          >
             ✏️
           </button>
         )}
