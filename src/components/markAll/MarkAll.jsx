@@ -1,10 +1,13 @@
 import React from "react";
 import "./MarkAllStyles.css";
 
-export const MarkAll = ({ todos, setTodos,setHideMarkAll, hideMarkAll }) => {
+export const MarkAll = ({ todos, setTodos, setHideMarkAll, hideMarkAll }) => {
   const handleDeleteAll = () => {
-    setHideMarkAll(false);
-    setTodos([]);
+    const confirmDelete = window.confirm(`Are you sure you want to delete All Todos?`);
+    if (confirmDelete) {
+      setHideMarkAll(false);
+      setTodos([]);
+    } else return;
   };
   const handleMarkComplete = () => {
     setTodos((prev) => prev.map((item) => ({ ...item, isCompleted: true })));
